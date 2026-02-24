@@ -21,8 +21,13 @@ if __name__=='__main__':
 
     while(1):
         card = input('Card: ')
-        d[card] -= 1
-        if(card in ['A', 'K', 'Q', 'J', 'T']):
-            running_count -= 1
-        elif(card in ['2', '3', '4', '5', '6']):
-            running_count += 1 
+        if d[card] != 0:
+            d[card] -= 1
+            remaining_shoe_count -= 1
+            if card[1] in ['A', 'K', 'Q', 'J', 'T']:
+                running_count -= 1
+                print(d)
+            elif card[1] in ['2', '3', '4', '5', '6']:
+                running_count += 1
+                print(d)
+        print('count: ',true_count(running_count,remaining_shoe_count))
