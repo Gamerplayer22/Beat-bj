@@ -10,6 +10,7 @@ def flush(h, d, s, c, remaining_cards):
     probability[3] = (c/remaining_cards) * ((c-1)/(remaining_cards-1)) * ((c-2)/(remaining_cards-2))
 
     max = probability[0]
+    flag = 0
     for i in range(len(probability)):
         if probability[i] > max:
             max = probability[i]
@@ -24,11 +25,37 @@ def flush(h, d, s, c, remaining_cards):
     else:
         t = 'clubs'
     
-    return print(f'{t}: {max*100}% , total: {(probability[0]+probability[1]+probability[2]+probability[3])*100}%')
+    return print(f'{t}: {max*100:.2f}% , total: {(probability[0]+probability[1]+probability[2]+probability[3])*100:.2f}%')
 
 # straight
-def straight():
-    return
+def straight(card_array, remaining_cards):
+
+    probability = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    for i in range(1,len(probability)-2):
+        probability[i] = (card_array[i]/remaining_cards) * (card_array[i+1]/(remaining_cards-1)) * (card_array[i+2]/(remaining_cards-2))
+
+    probability[0] = (card_array[12]/remaining_cards) * (card_array[0]/(remaining_cards-1)) * (card_array[1]/(remaining_cards-2))
+    probability[10] = (card_array[9]/remaining_cards) * (card_array[10]/(remaining_cards-1)) * (card_array[11]/(remaining_cards-2))
+    probability[11] = (card_array[10]/remaining_cards) * (card_array[11]/(remaining_cards-1)) * (card_array[12]/(remaining_cards-2))
+
+    total = 0
+    for i in range(len(probability)):
+        total += probability[i]
+
+    return print(f'straight total: {total*100:.2f}%')
+
+# A,2,3
+# 2,3,4
+# 3,4,5
+# 4,5,6
+# 5,6,7
+# 6,7,8
+# 7,8,9
+# 8,9,T
+# 9,T,J
+# T,J,Q
+# J,Q,K
+# Q,K,A
 
 # 3 of a kind
 def trips(card_array, remaining_cards):
@@ -44,7 +71,7 @@ def trips(card_array, remaining_cards):
             max = probability[i]
         total += probability[i]
 
-    return print(f'total: {total*100}%')
+    return print(f'3 of a kind total: {total*100:.2f}%')
 
 # straight flush
 def s_f():

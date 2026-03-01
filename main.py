@@ -26,6 +26,9 @@ if __name__=='__main__':
     for i in range(len(deck.deck)):
         d.update({deck.deck[i] : num_decks})
 
+    print(sidebets.flush(Hearts,Diamonds,Spades,Clubs,remaining_shoe_count))
+    print(sidebets.trips(card_array,remaining_shoe_count))
+    print(sidebets.straight(card_array,remaining_shoe_count))
 
     while(1):
         card = input('Card: ')
@@ -62,3 +65,4 @@ if __name__=='__main__':
         print('count: ',true_count(running_count,remaining_shoe_count))
         print(sidebets.flush(Hearts,Diamonds,Spades,Clubs,remaining_shoe_count))
         print(sidebets.trips(card_array,remaining_shoe_count))
+        print(sidebets.straight(card_array,remaining_shoe_count))
